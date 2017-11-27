@@ -27,6 +27,8 @@ parser.add_argument('--seed', type=int, default=1, metavar='S',
                     help='random seed (default: 1)')
 parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                     help='how many batches to wait before logging training status')
+parser.add_argument('--data-path', type=str, default='data',
+                    help='folder where data will be downloaded')
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 
@@ -37,14 +39,14 @@ if args.cuda:
 
 kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
 train_loader = torch.utils.data.DataLoader(
-    datasets.EMNIST('data', 'letters', train=True, download=True,
+    datasets.EMNIST(args.data_path, 'letters', train=True, download=True,
                     transform=transforms.Compose([
                         transforms.ToTensor(),
                         transforms.Normalize((0.1722,), (0.3309,))
                     ])),
     batch_size=args.batch_size, shuffle=True, **kwargs)
 test_loader = torch.utils.data.DataLoader(
-    datasets.EMNIST('data', 'letters', train=False, transform=transforms.Compose([
+    datasets.EMNIST(args.data_path, 'letters', train=False, transform=transforms.Compose([
                         transforms.ToTensor(),
                         transforms.Normalize((0.1722,), (0.3309,))
                     ])),
