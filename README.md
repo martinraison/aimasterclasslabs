@@ -6,7 +6,13 @@ Nous disposons de données contenant des caractères écrits par des enfants. Le
 
 Ces données sont présentes en quantité très limitée pour l'instant (quelques centaines de caractères), c'est pourquoi il est préférable d'entraîner d'abord sur un plus gros dataset (EMNIST), et d'appliquer ensuite ce modèle sur les données de l'association.
 
+### Prérequis
+
+Pytorch et torchvision doivent être installés. Suivre les instructions d'installation ici http://pytorch.org/
+
 Pour entraîner un modèle de reconnaissance de caractères sur EMNIST:
+
+### Utilisation
 
 ```
 python main.py
